@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Messenger</string>
+    <string name="messenger">Messenger</string>
+    <string name="your_email_address">Your email address</string>
 </resources>
