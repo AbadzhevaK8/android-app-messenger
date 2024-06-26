@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/waves"
+    android:fitsSystemWindows="true"
     android:padding="32dp"
     tools:context=".LoginActivity">
 
@@ -15,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome_to_messenger"
         android:textAlignment="center"
-        android:textColor="@color/ic_launcher_background"
+        android:textColor="?attr/colorPrimary"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"
