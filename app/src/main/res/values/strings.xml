@@ -2,4 +2,9 @@
     <string name="app_name">Messenger</string>
     <string name="messenger">Messenger</string>
     <string name="your_email_address">Your email address</string>
+    <string name="welcome_to_messenger">Welcome to Messenger!</string>
+    <string name="your_password">Your password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="register">Register</string>
 </resources>
