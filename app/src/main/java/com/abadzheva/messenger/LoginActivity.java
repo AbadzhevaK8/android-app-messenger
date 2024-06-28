@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -41,7 +40,9 @@ public class LoginActivity extends AppCompatActivity {
             String password = editTextPassword.getText().toString().trim();
         });
         textViewForgotPassword.setOnClickListener(v -> {
-            // TODO
+            Intent intent = ResetPasswordActivity.newIntent(LoginActivity.this,
+                    editTextEmail.getText().toString().trim());
+            startActivity(intent);
         });
         textViewRegister.setOnClickListener(v -> {
             Intent intent = RegistrationActivity.newIntent(LoginActivity.this);
@@ -49,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    
 
     private void initViews() {
         editTextEmail = findViewById(R.id.editTextEmail);
