@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -18,6 +20,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button buttonLogin;
     private TextView textViewForgotPassword;
     private TextView textViewRegister;
+
+    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +39,16 @@ public class LoginActivity extends AppCompatActivity {
         });
         // ----------------------- onCreate -----------------------
         initViews();
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        observeViewModel();
+        setupClickListeners();
+    }
+
+    private void setupClickListeners() {
         buttonLogin.setOnClickListener(v -> {
             String email = editTextEmail.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
+            viewModel.login(email, password);
         });
         textViewForgotPassword.setOnClickListener(v -> {
             Intent intent = ResetPasswordActivity.newIntent(LoginActivity.this,
@@ -50,6 +61,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void observeViewModel() {
+        viewModel.getError().observe(this, errorMessage -> Toast.makeText(
+                        LoginActivity.this,
+                        errorMessage,
+                        Toast.LENGTH_SHORT
+                )
+                .show());
+        viewModel.getUser().observe(this, firebaseUser -> {
+            if (firebaseUser != null) {
+                Intent intent = UsersActivity.newIntent(LoginActivity.this);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
 
     private void initViews() {
         editTextEmail = findViewById(R.id.editTextEmail);
