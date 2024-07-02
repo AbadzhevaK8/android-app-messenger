@@ -1,4 +1,4 @@
-package com.abadzheva.messenger.ui;
+package com.abadzheva.messenger.ui.adapters;
 
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;

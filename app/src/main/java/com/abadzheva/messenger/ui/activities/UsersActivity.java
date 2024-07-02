@@ -16,13 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abadzheva.messenger.R;
-import com.abadzheva.messenger.data.User;
-import com.abadzheva.messenger.ui.UsersAdapter;
+import com.abadzheva.messenger.ui.adapters.UsersAdapter;
 import com.abadzheva.messenger.ui.viewmodels.UsersViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 public class UsersActivity extends AppCompatActivity {
 
@@ -42,6 +37,7 @@ public class UsersActivity extends AppCompatActivity {
             return insets;
         });
         // -------------------------------------------------
+
         initViews();
         viewModel = new ViewModelProvider(this).get(UsersViewModel.class);
         observeViewModel();
@@ -61,6 +57,7 @@ public class UsersActivity extends AppCompatActivity {
                 finish();
             }
         });
+        viewModel.getUsers().observe(this, users -> usersAdapter.setUsers(users));
     }
 
     @Override
