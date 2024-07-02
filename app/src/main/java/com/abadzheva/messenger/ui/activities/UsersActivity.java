@@ -1,4 +1,4 @@
-package com.abadzheva.messenger;
+package com.abadzheva.messenger.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +13,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.abadzheva.messenger.R;
+import com.abadzheva.messenger.data.User;
+import com.abadzheva.messenger.ui.UsersAdapter;
+import com.abadzheva.messenger.ui.viewmodels.UsersViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class UsersActivity extends AppCompatActivity {
+
+    private RecyclerView recyclerViewUsers;
+    private UsersAdapter usersAdapter;
 
     private UsersViewModel viewModel;
 
@@ -23,14 +36,21 @@ public class UsersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_users);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recyclerViewUsers), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
         // -------------------------------------------------
+        initViews();
         viewModel = new ViewModelProvider(this).get(UsersViewModel.class);
         observeViewModel();
+    }
+
+    private void initViews() {
+        recyclerViewUsers = findViewById(R.id.recyclerViewUsers);
+        usersAdapter = new UsersAdapter();
+        recyclerViewUsers.setAdapter(usersAdapter);
     }
 
     private void observeViewModel() {

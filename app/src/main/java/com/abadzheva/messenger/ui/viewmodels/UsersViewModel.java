@@ -1,6 +1,5 @@
-package com.abadzheva.messenger;
+package com.abadzheva.messenger.ui.viewmodels;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

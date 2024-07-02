@@ -1,4 +1,4 @@
-package com.abadzheva.messenger;
+package com.abadzheva.messenger.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.abadzheva.messenger.R;
+import com.abadzheva.messenger.ui.viewmodels.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
