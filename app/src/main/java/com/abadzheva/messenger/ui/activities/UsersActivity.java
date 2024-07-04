@@ -16,15 +16,20 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abadzheva.messenger.R;
+import com.abadzheva.messenger.data.User;
 import com.abadzheva.messenger.ui.adapters.UsersAdapter;
 import com.abadzheva.messenger.ui.viewmodels.UsersViewModel;
 
 public class UsersActivity extends AppCompatActivity {
 
+    private static final String EXTRA_CURRENT_USER_ID = "current_user_id";
+
     private RecyclerView recyclerViewUsers;
     private UsersAdapter usersAdapter;
 
     private UsersViewModel viewModel;
+
+    private String currentUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +44,16 @@ public class UsersActivity extends AppCompatActivity {
         // -------------------------------------------------
 
         initViews();
+        currentUserId = getIntent().getStringExtra(EXTRA_CURRENT_USER_ID);
         viewModel = new ViewModelProvider(this).get(UsersViewModel.class);
         observeViewModel();
+        usersAdapter.setOnUserClickListener(new UsersAdapter.OnUserClickListener() {
+            @Override
+            public void onUserClick(User user) {
+                Intent intent = ChatActivity.newIntent(UsersActivity.this, currentUserId, user.getId());
+                startActivity(intent);
+            }
+        });
     }
 
     private void initViews() {
@@ -74,7 +87,9 @@ public class UsersActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static Intent newIntent(Context context) {
-        return new Intent(context, UsersActivity.class);
+    public static Intent newIntent(Context context, String currentUserId) {
+        Intent intent = new Intent(context, UsersActivity.class);
+        intent.putExtra(EXTRA_CURRENT_USER_ID, currentUserId);
+        return intent;
     }
 }

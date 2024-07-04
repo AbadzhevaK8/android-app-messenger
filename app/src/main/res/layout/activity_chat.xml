@@ -53,12 +53,14 @@
         android:paddingBottom="16dp"
         android:textColor="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="Autofill"
         tools:text="@tools:sample/full_names" />
 
     <ImageView
         android:id="@+id/imageViewSendMessage"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:contentDescription="@string/send_message"
         android:paddingEnd="8dp"
         app:layout_constraintBottom_toBottomOf="@id/editTextMessage"
         app:layout_constraintEnd_toEndOf="@+id/editTextMessage"

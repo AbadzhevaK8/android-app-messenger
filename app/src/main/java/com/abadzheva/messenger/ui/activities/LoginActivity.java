@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                 .show());
         viewModel.getUser().observe(this, firebaseUser -> {
             if (firebaseUser != null) {
-                Intent intent = UsersActivity.newIntent(LoginActivity.this);
+                Intent intent = UsersActivity.newIntent(LoginActivity.this, firebaseUser.getUid());
                 startActivity(intent);
                 finish();
             }

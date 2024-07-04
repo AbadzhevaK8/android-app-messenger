@@ -62,7 +62,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         return users.size();
     }
 
-    interface OnUserClickListener {
+    public interface OnUserClickListener {
         void onUserClick(User user);
     }
 
