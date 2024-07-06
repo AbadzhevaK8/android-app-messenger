@@ -2,6 +2,7 @@ package com.abadzheva.messenger.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -82,6 +84,7 @@ public class ChatActivity extends AppCompatActivity {
         viewModel.getMessages().observe(this, new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {
+
                 messagesAdapter.setMessages(messages);
             }
         });
@@ -106,6 +109,14 @@ public class ChatActivity extends AppCompatActivity {
             public void onChanged(User user) {
                 String userInfo = String.format("%s %s", user.getName(), user.getLastName());
                 textViewTitle.setText(userInfo);
+                int bgResId;
+                if (user.isOnline()) {
+                    bgResId = R.drawable.circle_online;
+                } else {
+                    bgResId = R.drawable.circle_offline;
+                }
+                Drawable background = ContextCompat.getDrawable(ChatActivity.this, bgResId);
+                onlineStatus.setBackground(background);
             }
         });
     }
@@ -116,6 +127,18 @@ public class ChatActivity extends AppCompatActivity {
         recyclerViewMessages = findViewById(R.id.recyclerViewMessages);
         editTextMessage = findViewById(R.id.editTextMessage);
         imageViewSendMessage = findViewById(R.id.imageViewSendMessage);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        viewModel.setUserOnline(true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        viewModel.setUserOnline(false);
     }
 
     public static Intent newIntent(Context context, String currentUserId, String receiverId) {
