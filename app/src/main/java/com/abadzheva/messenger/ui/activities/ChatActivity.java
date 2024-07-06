@@ -78,14 +78,26 @@ public class ChatActivity extends AppCompatActivity {
                 viewModel.sendMessage(message);
             }
         });
+        // ----------------------------- keyboard showing fix ------------------------
+        getWindow().getDecorView().getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            android.graphics.Rect r = new android.graphics.Rect();
+            getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
+            int screenHeight = getWindow().getDecorView().getRootView().getHeight();
+            int keypadHeight = screenHeight - r.bottom;
+
+            if (keypadHeight > screenHeight * 0.15) {
+                recyclerViewMessages.smoothScrollToPosition(messagesAdapter.getItemCount() - 1);
+            }
+        });
+        // ----------------------------- keyboard showing fix ------------------------
     }
 
     private void observeViewModel() {
         viewModel.getMessages().observe(this, new Observer<List<Message>>() {
             @Override
             public void onChanged(List<Message> messages) {
-
                 messagesAdapter.setMessages(messages);
+                recyclerViewMessages.scrollToPosition(messages.size() - 1);
             }
         });
         viewModel.getError().observe(this, new Observer<String>() {
