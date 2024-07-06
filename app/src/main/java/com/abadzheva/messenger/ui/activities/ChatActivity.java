@@ -13,11 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.abadzheva.messenger.R;
 import com.abadzheva.messenger.data.Message;
 import com.abadzheva.messenger.ui.adapters.MessagesAdapter;
+import com.abadzheva.messenger.ui.viewmodels.ChatViewModel;
+import com.abadzheva.messenger.ui.viewmodels.ChatViewModelFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +41,9 @@ public class ChatActivity extends AppCompatActivity {
     private String currentUserId;
     private String receiverId;
 
+    private ChatViewModel viewModel;
+    private ChatViewModelFactory viewModelFactory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,8 @@ public class ChatActivity extends AppCompatActivity {
         initViews();
         currentUserId = getIntent().getStringExtra(EXTRA_CURRENT_USER_ID);
         receiverId = getIntent().getStringExtra(EXTRA_RECEIVER_ID);
+        viewModelFactory = new ChatViewModelFactory(currentUserId, receiverId);
+        viewModel = new ViewModelProvider(this, viewModelFactory).get(ChatViewModel.class);
         messagesAdapter = new MessagesAdapter(currentUserId);
         recyclerViewMessages.setAdapter(messagesAdapter);
         List<Message> messages = new ArrayList<>();
