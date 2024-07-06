@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/waves"
+    android:background="@drawable/main_bg"
     android:fillViewport="true"
     android:fitsSystemWindows="true"
     tools:context=".ui.activities.RegistrationActivity">
@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:autofillHints="emailAddress"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
@@ -40,6 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:autofillHints="password"
             android:hint="@string/password"
             android:inputType="textPassword"
             android:minHeight="48dp" />
@@ -49,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:autofillHints="name"
             android:hint="@string/name"
             android:inputType="textCapWords"
             android:minHeight="48dp" />
@@ -58,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:autofillHints="name"
             android:hint="@string/last_name"
             android:inputType="textCapWords"
             android:minHeight="48dp" />
@@ -68,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="@string/age"
+            android:importantForAutofill="no"
             android:inputType="number"
             android:minHeight="48dp" />
 
