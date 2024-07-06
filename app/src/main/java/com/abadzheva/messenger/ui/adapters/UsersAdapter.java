@@ -66,10 +66,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UsersViewHol
         void onUserClick(User user);
     }
 
-    static class UsersViewHolder extends RecyclerView.ViewHolder {
+    public static class UsersViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewUserInfo;
-        private View onlineStatus;
+        private final TextView textViewUserInfo;
+        private final View onlineStatus;
 
         public UsersViewHolder(@NonNull View itemView) {
             super(itemView);

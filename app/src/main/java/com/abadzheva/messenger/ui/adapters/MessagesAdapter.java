@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.MessageViewHolder> {
-
     public static final int VIEW_TYPE_MESSAGE_SENT = 1;
+
     public static final int VIEW_TYPE_MESSAGE_RECEIVED = 2;
 
     private List<Message> messages = new ArrayList<>();
 
-    private String currentUserId;
+    private final String currentUserId;
 
     public MessagesAdapter(String currentUserId) {
         this.currentUserId = currentUserId;
@@ -30,6 +30,16 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     public void setMessages(List<Message> messages) {
         this.messages = messages;
         notifyDataSetChanged();
+    }
+
+    public static class MessageViewHolder extends RecyclerView.ViewHolder {
+
+        private final TextView textViewMessage;
+
+        public MessageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            textViewMessage = itemView.findViewById(R.id.textViewMessage);
+        }
     }
 
     @NonNull
@@ -61,15 +71,5 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
     @Override
     public int getItemCount() {
         return messages.size();
-    }
-
-    static class MessageViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView textViewMessage;
-
-        public MessageViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textViewMessage = itemView.findViewById(R.id.textViewMessage);
-        }
     }
 }

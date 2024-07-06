@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class ChatViewModelFactory implements ViewModelProvider.Factory {
 
-    private String currentUserId;
-    private String otherUserId;
+    private final String currentUserId;
+    private final String otherUserId;
 
     public ChatViewModelFactory(String currentUserId, String otherUserId) {
         this.currentUserId = currentUserId;

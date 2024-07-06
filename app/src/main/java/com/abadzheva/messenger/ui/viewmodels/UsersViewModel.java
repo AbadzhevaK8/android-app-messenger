@@ -19,12 +19,12 @@ import java.util.List;
 
 public class UsersViewModel extends ViewModel {
 
-    private FirebaseAuth auth;
-    private FirebaseDatabase database;
-    private DatabaseReference usersReference;
+    private final FirebaseAuth auth;
+    private final FirebaseDatabase database;
+    private final DatabaseReference usersReference;
 
-    private MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
-    private MutableLiveData<List<User>> users = new MutableLiveData<>();
+    private final MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
+    private final MutableLiveData<List<User>> users = new MutableLiveData<>();
 
     public UsersViewModel() {
         auth = FirebaseAuth.getInstance();

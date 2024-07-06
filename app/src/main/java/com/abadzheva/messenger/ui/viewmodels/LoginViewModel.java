@@ -9,10 +9,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends ViewModel {
 
-    private FirebaseAuth auth;
+    private final FirebaseAuth auth;
 
-    private MutableLiveData<String> error = new MutableLiveData<>();
-    private MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
+    private final MutableLiveData<String> error = new MutableLiveData<>();
+    private final MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
 
     public LoginViewModel() {
         auth = FirebaseAuth.getInstance();
@@ -28,9 +28,9 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void login(String email, String password) {
-        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(authResult -> {
-//            user.setValue(authResult.getUser());
-        }).addOnFailureListener(e -> {
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(authResult -> {})
+                .addOnFailureListener(e -> {
             error.setValue(e.getMessage());
         });
     }

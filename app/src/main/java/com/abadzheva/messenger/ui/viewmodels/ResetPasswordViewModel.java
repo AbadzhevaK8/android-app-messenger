@@ -8,9 +8,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class ResetPasswordViewModel extends ViewModel {
 
-    private FirebaseAuth auth = FirebaseAuth.getInstance();
-    private MutableLiveData<String> error = new MutableLiveData<>();
-    private MutableLiveData<Boolean> success = new MutableLiveData<>();
+    private final FirebaseAuth auth = FirebaseAuth.getInstance();
+    private final MutableLiveData<String> error = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> success = new MutableLiveData<>();
 
     public LiveData<Boolean> isSuccess() {
         return success;

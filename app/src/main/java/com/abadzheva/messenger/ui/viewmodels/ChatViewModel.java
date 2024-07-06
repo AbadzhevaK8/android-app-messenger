@@ -20,17 +20,17 @@ import java.util.List;
 
 public class ChatViewModel extends ViewModel {
 
-    private MutableLiveData<List<Message>> messages = new MutableLiveData<>();
-    private MutableLiveData<User> otherUser = new MutableLiveData<>();
-    private MutableLiveData<Boolean> messageSent = new MutableLiveData<>();
-    private MutableLiveData<String> error = new MutableLiveData<>();
+    private final MutableLiveData<List<Message>> messages = new MutableLiveData<>();
+    private final MutableLiveData<User> otherUser = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> messageSent = new MutableLiveData<>();
+    private final MutableLiveData<String> error = new MutableLiveData<>();
 
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference referenceUsers = firebaseDatabase.getReference("Users");
-    private DatabaseReference referenceMassages = firebaseDatabase.getReference("Messages");
+    private final FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private final DatabaseReference referenceUsers = firebaseDatabase.getReference("Users");
+    private final DatabaseReference referenceMassages = firebaseDatabase.getReference("Messages");
 
-    private String currentUserId;
-    private String otherUserId;
+    private final String currentUserId;
+    private final String otherUserId;
 
     public ChatViewModel(String currentUserId, String otherUserId) {
         this.currentUserId = currentUserId;

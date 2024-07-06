@@ -12,12 +12,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationViewModel extends ViewModel {
 
-    private FirebaseAuth auth;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference usersReference;
+    private final FirebaseAuth auth;
+    private final FirebaseDatabase firebaseDatabase;
+    private final DatabaseReference usersReference;
 
-    private MutableLiveData<String> error = new MutableLiveData<>();
-    private MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
+    private final MutableLiveData<String> error = new MutableLiveData<>();
+    private final MutableLiveData<FirebaseUser> user = new MutableLiveData<>();
 
     public RegistrationViewModel() {
         auth = FirebaseAuth.getInstance();
