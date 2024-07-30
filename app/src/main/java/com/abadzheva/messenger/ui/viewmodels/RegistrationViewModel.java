@@ -52,7 +52,7 @@ public class RegistrationViewModel extends ViewModel {
                     usersReference.child(user.getId()).setValue(user);
                 })
                 .addOnFailureListener(e -> {
-            error.setValue(e.getMessage());
-        });
+                    error.setValue(e.getMessage());
+                });
     }
 }

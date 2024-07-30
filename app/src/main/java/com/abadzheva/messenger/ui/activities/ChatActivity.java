@@ -67,6 +67,7 @@ public class ChatActivity extends AppCompatActivity {
         messagesAdapter = new MessagesAdapter(currentUserId);
         recyclerViewMessages.setAdapter(messagesAdapter);
         observeViewModel();
+
         imageViewSendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +98,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Message> messages) {
                 messagesAdapter.setMessages(messages);
-                recyclerViewMessages.scrollToPosition(messages.size() - 1);
+                recyclerViewMessages.smoothScrollToPosition(messages.size() - 1);
             }
         });
         viewModel.getError().observe(this, new Observer<String>() {

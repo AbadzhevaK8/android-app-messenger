@@ -29,9 +29,10 @@ public class LoginViewModel extends ViewModel {
 
     public void login(String email, String password) {
         auth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener(authResult -> {})
+                .addOnSuccessListener(authResult -> {
+                })
                 .addOnFailureListener(e -> {
-            error.setValue(e.getMessage());
-        });
+                    error.setValue(e.getMessage());
+                });
     }
 }
